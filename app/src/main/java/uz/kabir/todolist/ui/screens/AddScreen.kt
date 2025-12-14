@@ -23,8 +23,10 @@ fun AddScreen(
     onNavigateBack: () -> Unit,
     viewModel: AddToDoViewModel = koinViewModel()
 ) {
+    // Title, description va form validligini kuzatamiz
     val title by viewModel.title.collectAsStateWithLifecycle()
     val description by viewModel.description.collectAsStateWithLifecycle()
+    val isFormValid by viewModel.isFormValid.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -52,9 +54,10 @@ fun AddScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // Task title input
             OutlinedTextField(
                 value = title,
-                onValueChange = viewModel::onTitleChange,
+                onValueChange = { viewModel.title.value = it },
                 label = { Text("Task title") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -62,10 +65,10 @@ fun AddScreen(
                 shape = RoundedCornerShape(16.dp)
             )
 
-
+            // Task description input
             OutlinedTextField(
                 value = description,
-                onValueChange = viewModel::onDescriptionChange,
+                onValueChange = { viewModel.description.value = it },
                 label = { Text("Task description") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -74,14 +77,14 @@ fun AddScreen(
                 shape = RoundedCornerShape(16.dp)
             )
 
+            // Add button, faqat form to'liq bo'lsa faollashadi
             Button(
                 onClick = { viewModel.addTodo(onSuccess = onNavigateBack) },
-                enabled = title.isNotBlank(),
+                enabled = isFormValid,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(62.dp),
                 shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors()
             ) {
                 Text("Add Task")
             }

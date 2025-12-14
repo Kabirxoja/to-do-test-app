@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import uz.kabir.todolist.data.local.ToDoEntity
 import uz.kabir.todolist.data.repository.ToDoRepository
 
-class DetailViewModel(private val repository: ToDoRepository) : ViewModel() {
+class DetailToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
 
     private val _todoItem = MutableStateFlow<ToDoEntity?>(null)
     val todoItem: StateFlow<ToDoEntity?> get() = _todoItem

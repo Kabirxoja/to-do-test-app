@@ -26,7 +26,7 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
                     navController.navigate(NavRoute.Add.route)
                 },
                 onNavigateToDetail = { todoId ->
-                    navController.navigate("detail/$todoId")
+                    navController.navigate(NavRoute.Detail.createRoute(todoId))
                 }
             )
         }

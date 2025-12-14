@@ -2,7 +2,6 @@ package uz.kabir.todolist.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -21,9 +20,6 @@ class MainToDoViewModel(
             initialValue = emptyList()
         )
 
-    private val _todoItem = MutableStateFlow<ToDoEntity?>(null)
-    val todoItem: StateFlow<ToDoEntity?> = _todoItem
-
     fun toggleCompleted(toDoEntity: ToDoEntity) {
         viewModelScope.launch {
             repository.update(
@@ -35,13 +31,6 @@ class MainToDoViewModel(
     fun deleteTodo(toDoEntity: ToDoEntity) {
         viewModelScope.launch {
             repository.delete(toDoEntity)
-        }
-    }
-
-    fun fetchTodoById(id: Int) {
-        viewModelScope.launch {
-            val item = repository.getTodoById(id)
-            _todoItem.value = item
         }
     }
 }

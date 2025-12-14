@@ -21,7 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
-import uz.kabir.todolist.ui.viewmodel.DetailViewModel
+import uz.kabir.todolist.ui.viewmodel.DetailToDoViewModel
 import androidx.compose.runtime.getValue
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -32,7 +32,7 @@ import java.util.Locale
 fun DetailScreen(
     todoId: Int,
     onNavigateBack: () -> Unit,
-    viewModel: DetailViewModel = koinViewModel()
+    viewModel: DetailToDoViewModel = koinViewModel()
 ) {
     val todoItem by viewModel.todoItem.collectAsState()
 

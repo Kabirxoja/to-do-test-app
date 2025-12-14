@@ -6,7 +6,7 @@ import uz.kabir.todolist.data.repository.ToDoRepositoryImpl
 import uz.kabir.todolist.ui.viewmodel.AddToDoViewModel
 import uz.kabir.todolist.ui.viewmodel.MainToDoViewModel
 import org.koin.dsl.module
-import uz.kabir.todolist.ui.viewmodel.DetailViewModel
+import uz.kabir.todolist.ui.viewmodel.DetailToDoViewModel
 
 val appModule = module {
 
@@ -25,6 +25,6 @@ val appModule = module {
     }
 
     viewModel {
-        DetailViewModel(repository = get())
+        DetailToDoViewModel(repository = get())
     }
 }
